@@ -41,7 +41,9 @@ const add = () => {
 
 const bloqAddBtn = computed(() => {
   const numSearch = arrayFavorites.value.find((num) => num === counter.value);
-  if(numSearch === 0){return true};
+  if (numSearch === 0) {
+    return true;
+  }
   return numSearch ? true : false;
 });
 
@@ -109,21 +111,36 @@ const classCounter = computed(() => {
   <button @click.right="handleClick('Right')">Click right</button>
   <br /> -->
   ---------------------------------------------------------------
-  <h1>Reactividad</h1>
-  <h2 :class="classCounter">
-    {{ counter }}
-  </h2>
-  <button @click="handleCounter('increment')">Incrementa</button>
-  <button @click="handleCounter('decrement')">Decrementa</button>
-  <button @click="handleCounter('reset')">Resetea</button>
-  <button @click="add" :disabled="bloqAddBtn">Add</button>
-
-  {{ arrayFavorites }}
-  <ul>
-    <li v-for="(item, index) in arrayFavorites" :key="index">
-      {{ item }}
-    </li>
-  </ul>
+  <div class="container text-center mt-3">
+    <h1>Reactividad</h1>
+    <h2 :class="classCounter">
+      {{ counter }}
+    </h2>
+    <div class="btn-group mb-3">
+      <button @click="handleCounter('increment')" class="btn btn-success">
+        Incrementa
+      </button>
+      <button @click="handleCounter('decrement')" class="btn btn-danger">
+        Decrementa
+      </button>
+      <button @click="handleCounter('reset')" class="btn btn-secondary">
+        Resetea
+      </button>
+      <button @click="add" :disabled="bloqAddBtn" class="btn btn-primary">
+        Add
+      </button>
+    </div>
+    <ul class="list-group">
+      Mis favoritos
+      <li
+        class="list-group-item"
+        v-for="(item, index) in arrayFavorites"
+        :key="index"
+      >
+        {{ item }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <style>
